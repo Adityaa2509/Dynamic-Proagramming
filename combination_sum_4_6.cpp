@@ -52,7 +52,22 @@ int memo_ans(vector<int> nums,int tar,vector<int>& dp,vector<int> & temp )
     return dp[tar];
 }
 
-
+int tabu_ans(vector<int> nums,int tar)
+{
+    //This quetion cannot be optimized furthur
+    //that is space optimization is not possible
+    vector<int>dp(tar+1,0);
+dp[0] = 1;
+    for(int i=1;i<=tar;i++)
+    {
+        for(int j=0;j<nums.size();j++)
+        {
+            if(i>=nums[j]) dp[i] += dp[i-nums[j]];
+        }
+        
+    }
+return dp[tar];
+}
 
 
 
